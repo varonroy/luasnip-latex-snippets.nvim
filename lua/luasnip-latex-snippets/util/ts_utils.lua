@@ -17,8 +17,8 @@ local function get_node_at_cursor()
   -- Subtract one to account for 1-based row indexing in nvim_win_get_cursor
   local row, col = pos[1] - 1, pos[2]
 
-  local parser = vim.treesitter.get_parser(0, "latex")
-  if not parser then
+  local success, parser = pcall(vim.treesitter.get_parser, 0, "latex")
+  if not success then
     return
   end
 
